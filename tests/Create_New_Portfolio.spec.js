@@ -86,6 +86,6 @@ for (let i = 0; i < otp.length; i++) {
     await page.getByText('View Portfolio').click();
     await expect(page.locator('h1')).toHaveText('Portfolio');
 
-    await page.pause();
+   // await page.pause();
 
 });
