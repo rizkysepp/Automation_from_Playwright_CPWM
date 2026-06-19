@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test('Subscribe Transaction flow', async ({page}) => {
+test('Compare Products flow', async ({page}) => {
     await page.goto('https://initial-inquiry-pjs4.bolt.host/login');
     await expect(page.locator('h2')).toHaveText('CPWM');
 
@@ -44,34 +44,19 @@ if (match) {
     await expect(page).toHaveURL(/dashboard/);
 
     await page.locator('(//span[@class="transition-all duration-300 whitespace-nowrap flex-1 text-left opacity-100"])[2]').click();
-    await page.locator('(//span[text()="Products"])[3]').click();
-    await expect(page.locator('h1')).toHaveText('Investment Products');
-    await page.locator('(//button[text()="View Details"])[1]').click();
-    await expect(page).toHaveURL(/9/)
-    await page.getByText('Fund Fact Sheet').click();
-    await page.getByText('Prospectus').click();
-    await page.getByText('Subscribe').click();
-    
-    await expect(page.locator('h2')).toHaveText('Transaction Details');
-    await page.locator('//input[@type="number"]').fill('1000000')
-    await page.locator('//input[@type="checkbox"]').check();
-    await page.getByText('Proceed to Payment').click();
-    const text = await page.locator('body').textContent();
-
-const otp = text.match(/\d{6}/)[0];
-
-for (let i = 0; i < otp.length; i++) {
-  await page.locator(`#otp-${i}`).fill(otp[i]);
-}
-
-    await page.getByText('Verify').click();
-    await expect(page.locator('h2')).toHaveText('Transaction Successful!');
-    await page.getByText('Download').click();
-    await page.getByText('View Portfolio').click();
-    await expect(page.locator('h1')).toHaveText('Portfolio');
-
+    await page.getByText('Compare Products').click();
+    await expect(page.locator('h1')).toHaveText('Compare Products');
+    await page.locator('//div[contains(@class,"border-emerald-400")]').click();
+    await page.locator('//input[@placeholder="Search products..."]').fill('BNP Paribas');
+    await page.locator('//p[text()="BNP Paribas Ekuitas"]').click();
+    await page.locator('//div[contains(@class,"bg-blue-50")]').click();
+    await page.locator('//input[@placeholder="Search products..."]').fill('Schroder Dana Mantap Plus II');
+    await page.locator('//p[text()="Schroder Dana Mantap Plus II"]').click();
+    await page.locator('//div[@class="rounded-xl border-t-4 border-violet-400 overflow-visible"]').click();
+    await page.locator('//input[@placeholder="Search products..."]').fill('Eastspring Investments Stable Income');
+    await page.locator('//p[text()="Eastspring Investments Stable Income"]').click();
 
     await page.pause();
 
-});
 
+})
