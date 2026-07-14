@@ -48,6 +48,74 @@ if (match) {
         page.locator('(//span[text()="Assets & Liabilities"])[2]')
     ).toHaveText('Assets & Liabilities')
 
+    // Add Asset
+    await page.getByText('Add Asset').click();
+    await page.locator('select').selectOption('Vehicle');
+    await page.locator('(//input[contains(@class, "px-3")])[1]').fill('Yaris GR');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[1]')
+    ).toHaveValue('Yaris GR');
+    await page.locator('(//input[contains(@class, "px-3")])[2]').fill('800000000');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[2]')
+    ).toHaveValue('800000000');
+    await page.locator('(//input[contains(@class, "px-3")])[3]').fill('Second Hand Car');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[3]')
+    ).toHaveValue('Second Hand Car');
+    await page.getByText('Save').click();
+
+    // Add Liability
+    await page.getByText('Add Liability').click();
+    await page.locator('select').selectOption('Credit Card');
+    await page.locator('(//input[contains(@class, "px-3")])[1]').fill('Visa MasterCard');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[1]')
+    ).toHaveValue('Visa MasterCard');
+    await page.locator('(//input[contains(@class, "px-3")])[2]').fill('50000');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[2]')
+    ).toHaveValue('50000');
+    await page.getByText('Save').click();
+    await expect(page).toHaveURL(/asset-liabilities/);
+
+    //Edit Asset
+    await page.locator('(//button[contains(@class, "rounded-lg")])[18]').click();
+    await page.locator('(//input[contains(@class, "px-3")])[1]').fill('Nissan GTR');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[1]')
+    ).toHaveValue('Nissan GTR');
+    await page.locator('(//input[contains(@class, "px-3")])[2]').fill('1000000000');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[2]')
+    ).toHaveValue('1000000000');
+    await page.locator('(//input[contains(@class, "px-3")])[3]').fill('Second Hand Car');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[3]')
+    ).toHaveValue('Second Hand Car');
+    await page.locator('//button[text()="Update"]').click();
+
+    //Edit Liability
+    await page.locator('(//button[contains(@class, "rounded-lg")])[16]').click();
+    await page.locator('(//input[contains(@class, "px-3")])[1]').fill('Visa Platinum Card');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[1]')
+    ).toHaveValue('Visa Platinum Card');
+    await page.locator('(//input[contains(@class, "px-3")])[2]').fill('175000');
+    await expect(
+        page.locator('(//input[contains(@class, "px-3")])[2]')
+    ).toHaveValue('175000');
+    await page.locator('//button[text()="Update"]').click();
+
+    //Delete Liability
+    await page.locator('(//button[contains(@class, "rounded-lg")])[17]').click();
+
+    //Delete Asset
+    await page.locator('(//button[contains(@class, "rounded-lg")])[19]').click();
+
+
+
     await page.pause();
+
 
 })
