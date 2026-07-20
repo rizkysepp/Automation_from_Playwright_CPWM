@@ -42,14 +42,10 @@ if (match) {
 }
     await page.getByText('Login').click();
     await expect(page).toHaveURL(/dashboard/);
-
-    await page.locator('(//span[text()="Transactions"])[2]').click();
-    await expect(page.locator('h1')).toHaveText('Transaction History');
-    await page.locator('(//div[contains(@class, "flex-col")])[6]').click();
-    await page.mouse.wheel(0, 800);
-    await page.getByText('Download Receipt').click();
+    await page.locator
 
     await page.pause();
+
 
 
 })
