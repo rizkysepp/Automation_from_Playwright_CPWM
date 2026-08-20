@@ -56,6 +56,9 @@ if (match) {
 
     //Search
     await page.locator('//input[@placeholder="Search IPO by company, ticker, or sector..."]').fill('Green Energy');
+
+    //View Details
+    await page.getByText('View Details').click();
     
 
 

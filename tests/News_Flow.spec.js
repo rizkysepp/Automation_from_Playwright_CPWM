@@ -42,7 +42,16 @@ if (match) {
 }
     await page.getByText('Login').click();
     await expect(page).toHaveURL(/dashboard/);
-    await page.locator
+    await page.locator('(//span[text()="News"])[2]').click();
+    await expect(page).toHaveURL(/news/);
+    await page.locator('//h3[text()="BI Keeps Benchmark Interest Rate at 5.75%"]').click();
+    await page.locator('(//button[contains(@class, "inline-flex")])[1]').click();
+    await page.locator('//button[text()="Stocks"]').click();
+    await page.locator('//button[text()="Mutual Funds"]').click();
+    await page.locator('//button[text()="Economic"]').click();
+    await page.locator('//button[text()="Markets"]').click();
+
+
 
     await page.pause();
 
