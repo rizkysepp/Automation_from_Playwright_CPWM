@@ -84,10 +84,48 @@ if (match) {
     await page.getByText('Create Plan').click();
     await page.getByText('Dream House').click();
 
-    
+    // EDIT
+    await page.locator('(//button[contains(@class,"p-1.5")])[7]').click();
+    await page.locator('//input[@placeholder="e.g. My Retirement Fund"]').clear();
+    await page.getByPlaceholder('e.g. My Retirement Fund').fill('Dream Car');
+    await expect(
+      page.locator('//input[@placeholder="e.g. My Retirement Fund"]')
+    ).toHaveValue('Dream Car');
+    await page.getByPlaceholder('e.g. 500000000').clear();
+    await page.getByPlaceholder('e.g. 500000000').fill('200000000');
+    await expect(
+      page.locator('//input[@placeholder="e.g. 500000000"]')
+    ).toHaveValue('200000000');
+    await page.locator('select').selectOption('Medium Priority');
+    await expect(
+      page.locator('select')
+    ).toHaveValue('medium');
+    await page.getByPlaceholder('e.g. 10000000').clear();
+    await page.getByPlaceholder('e.g. 10000000').fill('15000000');
+    await expect(
+      page.locator('//input[@placeholder="e.g. 10000000"]')
+    ).toHaveValue('15000000');
+    await page.getByPlaceholder('e.g. 2000000').clear();
+    await page.getByPlaceholder('e.g. 2000000').fill('10000000');
+    await expect(
+      page.locator('//input[@placeholder="e.g. 2000000"]')
+    ).toHaveValue('10000000');
+    await page.getByPlaceholder('e.g. 8').clear();
+    await page.getByPlaceholder('e.g. 8').fill('50');
+    await expect(
+      page.locator('//input[@placeholder="e.g. 8"]')
+    ).toHaveValue('50');
+    await page.locator('//textarea[@placeholder="Any additional notes about this goal..."]').clear();
+    await page.locator('//textarea[@placeholder="Any additional notes about this goal..."]').fill('Dream Car');
+    await expect(
+      page.locator('//textarea[@placeholder="Any additional notes about this goal..."]')
+    ).toHaveValue('Dream Car')
+    await page.getByText('Update Plan').click();
 
+    //DELETE
+    await page.locator('(//button[contains(@class,"p-1.5")])[10]').click();
+    await page.getByText('Delete').click();
 
-    
     await page.pause();
 
 
