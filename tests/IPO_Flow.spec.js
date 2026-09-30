@@ -1,7 +1,11 @@
 import {test, expect} from '@playwright/test';
 
 test('IPO flow', async ({page}) => {
-    await page.goto('https://initial-inquiry-pjs4.bolt.host/login');
+    await page.goto('https://initial-inquiry-pjs4.bolt.host/login', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+    });
+
     await expect(page.locator('h2')).toHaveText('CPWM');
 
     await page.locator('#email').fill(process.env.EMAIL_OR_USERNAME);
@@ -58,7 +62,7 @@ if (match) {
     await page.locator('//input[@placeholder="Search IPO by company, ticker, or sector..."]').fill('Green Energy');
 
     //View Details
-    await page.getByText('View Details').click();
+    await page.getByText('Details').click();
     
 
 
